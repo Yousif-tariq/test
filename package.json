@@ -1,0 +1,19 @@
+{
+  "name": "asasat-al-mashaer-frontend",
+  "version": "2.0.0",
+  "description": "الواجهة الأمامية ولوحة التحكم المستقلة لشركة أساسات المشاعر المحدودة للأنظمة الذكية",
+  "author": "أساسات المشاعر المحدودة",
+  "license": "Proprietary",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "serve": "npx serve .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1"
+  }
+}

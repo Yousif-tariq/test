@@ -1,0 +1,14 @@
+{
+  "status": "healthy",
+  "service": "asasat-al-mashaer-web-profile",
+  "version": "1.0.0",
+  "environment": "production",
+  "timestamp": "2026-08-12T10:40:00+03:00",
+  "uptime": "operational",
+  "checks": {
+    "cmsStore": "ready",
+    "staticAssets": "ready",
+    "servicesCount": 10,
+    "mediaAssets": "ready"
+  }
+}
