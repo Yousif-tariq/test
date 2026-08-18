@@ -1,10 +1,11 @@
 export interface ServiceItem {
   id: string;
-  number: string;
+  number?: string;
   title: string;
-  titleEn: string;
+  titleEn?: string;
   category: string;
-  iconName: string;
+  iconName?: string;
+  icon?: string;
   shortDescription: string;
   fullDescription: string;
   features: string[];
@@ -15,37 +16,41 @@ export interface ServiceItem {
 
 export interface EcosystemNode {
   id: string;
-  number: string;
+  number?: string;
   title: string;
-  titleEn: string;
+  titleEn?: string;
   role: string;
   description: string;
-  connectsTo: string[];
-  iconKey: string;
-  metrics: string;
+  connectsTo?: string[];
+  connectedTo?: string[];
+  iconKey?: string;
+  icon?: string;
+  metrics?: string;
+  metric?: string;
 }
 
 export interface SectorItem {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
-  highlights: string[];
-  icon: string;
-  tag: string;
+  highlights?: string[];
+  icon?: string;
+  tag?: string;
+  imagePath?: string;
 }
 
 export interface IndicatorItem {
   id: string;
   title: string;
-  subtitle: string;
-  badge: string;
+  subtitle?: string;
+  badge?: string;
   description: string;
   icon: string;
 }
 
 export interface PillarItem {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   icon: string;
@@ -54,9 +59,10 @@ export interface PillarItem {
 export interface WhyUsItem {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   icon: string;
   badge?: string;
+  span?: string | number;
   spanCol?: number;
 }

@@ -82,8 +82,8 @@ class App {
       if (navEl) navEl.style.top = '42px';
       
       const pubBtn = document.getElementById('preview-publish-btn');
-      pubBtn?.addEventListener('click', () => {
-        const res = CMSStore.publish('نشر التعديلات من شريط المعاينة المباشرة');
+      pubBtn?.addEventListener('click', async () => {
+        const res = await CMSStore.publish('نشر التعديلات من شريط المعاينة المباشرة');
         if (res.success) {
           alert(`تم نشر التغييرات بنجاح بالنسخة (${res.version})!`);
           window.location.href = 'index.html';

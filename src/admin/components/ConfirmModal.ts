@@ -1,13 +1,24 @@
 import { getIcon } from '../../icons/serviceIcons';
 
-export function showConfirmModal(options: {
+export interface ConfirmModalOptions {
   title: string;
   message: string;
   confirmText?: string;
   cancelText?: string;
   isDanger?: boolean;
   onConfirm: () => void;
-}): void {
+}
+
+export function showConfirmModal(
+  titleOrOptions: string | ConfirmModalOptions,
+  message?: string,
+  onConfirm?: () => void,
+  isDanger = false
+): void {
+  const options: ConfirmModalOptions = typeof titleOrOptions === 'string'
+    ? { title: titleOrOptions, message: message || '', onConfirm: onConfirm || (() => {}), isDanger }
+    : titleOrOptions;
+
   const existing = document.getElementById('admin-confirm-modal');
   if (existing) existing.remove();
 

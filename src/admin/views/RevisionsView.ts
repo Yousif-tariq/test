@@ -77,9 +77,9 @@ export function initRevisionsViewListeners(onRefresh: () => void): void {
         message: `هل أنت متأكد من استعادة النسخة (${ver})؟ سيتم استبدال محتوى الموقع الحالي ببيانات هذه النسخة فوراً.`,
         confirmText: 'نعم، استعد النسخة الآن',
         isDanger: true,
-        onConfirm: () => {
+        onConfirm: async () => {
           if (id) {
-            const success = CMSStore.restoreRevision(id);
+            const success = await CMSStore.restoreRevision(id);
             if (success) {
               showToast(`تمت استعادة النسخة (${ver}) بنجاح.`);
               onRefresh();

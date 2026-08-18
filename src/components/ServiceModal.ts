@@ -17,7 +17,7 @@ export function renderServiceModal(): string {
   `;
 }
 
-export function openServiceModal(service: ServiceItem, onOpenConsultation: (serviceName: string) => void): void {
+export function openServiceModal(service: ServiceItem, onOpenConsultation?: (serviceName: string) => void): void {
   const backdrop = document.getElementById('service-modal-backdrop');
   const container = document.getElementById('service-modal-dynamic-content');
 

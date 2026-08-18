@@ -153,7 +153,7 @@ export class AuthService {
       case 'view_only':
         return true;
       case 'manage_all':
-        return user.role === 'super_admin';
+        return false;
       default:
         return false;
     }
