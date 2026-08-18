@@ -1,4 +1,5 @@
 {
+  "framework": null,
   "headers": [
     {
       "source": "/(.*)",
@@ -46,7 +47,15 @@
       "destination": "/admin.html"
     },
     {
+      "source": "/admin.html",
+      "destination": "/admin.html"
+    },
+    {
       "source": "/404",
+      "destination": "/404.html"
+    },
+    {
+      "source": "/404.html",
       "destination": "/404.html"
     },
     {
@@ -54,8 +63,20 @@
       "destination": "/500.html"
     },
     {
+      "source": "/500.html",
+      "destination": "/500.html"
+    },
+    {
       "source": "/favicon.ico",
       "destination": "/img/LOGO.jpeg"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
     }
   ]
 }

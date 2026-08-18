@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit || true",
+    "build": "node build.js",
     "preview": "vite preview",
     "serve": "npx serve .",
     "typecheck": "tsc --noEmit"
