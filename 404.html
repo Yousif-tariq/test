@@ -3,82 +3,387 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 — الصفحة غير موجودة | أساسات المشاعر المحدودة</title>
+  <title>404 — الصفحة غير موجودة | شركة أساسات المشاعر المحدودة</title>
   <link rel="icon" type="image/jpeg" href="img/LOGO.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800;900&family=Readex+Pro:wght@400;600;700;800&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/styles/variables.css" />
-  <link rel="stylesheet" href="src/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800;900&family=Readex+Pro:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  
   <style>
-    .error-page-wrapper {
+    :root {
+      --bg-dark: #070d19;
+      --bg-card: rgba(15, 23, 42, 0.85);
+      --border-glow: rgba(0, 102, 255, 0.35);
+      --blue-electric: #0066ff;
+      --blue-glow: #00f0ff;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-arabic: 'Readex Pro', 'Tajawal', sans-serif;
+      --font-latin: 'Outfit', sans-serif;
+      --radius-lg: 24px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-arabic);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Background Glows */
+    .bg-glow-1 {
+      position: fixed;
+      top: -150px;
+      right: -150px;
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 102, 255, 0.22) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow-2 {
+      position: fixed;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Brand Bar */
+    .brand-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      padding: 4px 10px;
+      box-shadow: 0 4px 15px rgba(0, 102, 255, 0.25);
+    }
+
+    .brand-name-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-subtitle {
+      font-size: 0.76rem;
+      color: var(--blue-glow);
+      font-weight: 600;
+    }
+
+    /* Main 404 Container */
+    .error-container {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
-      background: radial-gradient(circle at center, #ffffff 0%, #f8fafc 100%);
-      text-align: center;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 10;
     }
+
     .error-card {
-      background: #ffffff;
+      background: var(--bg-card);
       border: 1px solid var(--border-glow);
       border-radius: var(--radius-lg);
       padding: 3.5rem 2.5rem;
-      max-width: 600px;
+      max-width: 720px;
       width: 100%;
-      box-shadow: var(--shadow-glow-strong);
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 102, 255, 0.15);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
     }
-    .error-code {
-      font-size: 6rem;
-      font-weight: 900;
+
+    .error-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0066ff, #00f0ff, #0066ff);
+    }
+
+    /* 404 Number Badge */
+    .error-badge-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .error-number {
       font-family: var(--font-latin);
-      line-height: 1;
-      background: var(--grad-accent-text);
+      font-size: clamp(5rem, 14vw, 8.5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      background: linear-gradient(135deg, #ffffff 30%, #00f0ff 70%, #0066ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 30px rgba(0, 102, 255, 0.3);
     }
-    .error-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .error-desc {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-    }
-    .error-actions {
-      display: flex;
+
+    .error-pill {
+      display: inline-flex;
       align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      background: rgba(0, 102, 255, 0.15);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      color: var(--blue-glow);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .error-title {
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .error-desc {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 2.2rem auto;
+    }
+
+    /* Action Buttons */
+    .error-btn-group {
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      font-family: var(--font-arabic);
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, #0066ff 0%, #0044cc 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 102, 255, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 102, 255, 0.6);
+      background: linear-gradient(135deg, #0077ff 0%, #0055ee 100%);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--blue-glow);
+      color: var(--blue-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Quick Shortcuts Grid */
+    .shortcuts-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 2rem;
+      text-align: right;
+    }
+
+    .shortcuts-title {
+      font-size: 0.88rem;
+      color: var(--blue-glow);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .shortcuts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .shortcut-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .shortcut-card:hover {
+      background: rgba(0, 102, 255, 0.1);
+      border-color: rgba(0, 102, 255, 0.4);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .brand-footer {
+      padding: 1.2rem 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
-  <div class="error-page-wrapper">
-    <div class="error-card">
-      <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-        <img src="img/LOGO.jpeg" alt="أساسات المشاعر المحدودة" style="height: 48px; border-radius: 8px; border: 1px solid var(--border-subtle); padding: 2px 6px;" />
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Header -->
+  <header class="brand-header">
+    <a href="index.html" class="brand-logo-wrap">
+      <img src="img/LOGO.jpeg" alt="شعار أساسات المشاعر" class="brand-logo" />
+      <div class="brand-name-group">
+        <span class="brand-title">شركة أساسات المشاعر المحدودة</span>
+        <span class="brand-subtitle">أنظمة أمنية وذكية • بنية تحتية • BMS</span>
       </div>
-      <div class="error-code">404</div>
-      <h1 class="error-title">عذراً، الصفحة غير موجودة</h1>
-      <p class="error-desc">يبدو أن الرابط الذي تبحث عنه قد تم نقله أو حذفه، أو أنك أدخلت عنواناً غير صحيح.</p>
-      <div class="error-actions">
-        <a href="index.html" class="btn-primary">
-          <span>العودة إلى الصفحة الرئيسية</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </a>
+    <a href="index.html" class="btn-action btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">
+      <span>الرئيسية</span>
+    </a>
+  </header>
+
+  <!-- Main Error Card -->
+  <main class="error-container">
+    <div class="error-card">
+      <div class="error-badge-container">
+        <div class="error-number">404</div>
+      </div>
+
+      <div class="error-pill">
+        <span>⚠️ مسار غير متاح أو تم نقله</span>
+      </div>
+
+      <h1 class="error-title">عذراً، لم نتمكن من العثور على الصفحة المطلوبة!</h1>
+      <p class="error-desc">
+        الصفحة التي تحاول الوصول إليها قد تكون حُذفت، تم تغيير مسارها، أو أن العنوان الذي أدخلته غير متطابق. يمكنك الانتقال مباشرة لأحد الأقسام الرئيسية أدناه.
+      </p>
+
+      <div class="error-btn-group">
+        <a href="index.html" class="btn-action btn-main">
+          <span>العودة للموقع الرئيسي</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         </a>
-        <a href="index.html#contact" class="btn-secondary">
-          <span>تواصل مع الدعم الفني</span>
+        <a href="admin.html" class="btn-action btn-outline">
+          <span>لوحة التحكم CMS</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
         </a>
+        <a href="index.html#contact" class="btn-action btn-outline">
+          <span>طلب استشارة فورية</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </a>
+      </div>
+
+      <!-- Quick Shortcuts -->
+      <div class="shortcuts-section">
+        <div class="shortcuts-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>روابط سريعة لأهم الأقسام والحلول:</span>
+        </div>
+        <div class="shortcuts-grid">
+          <a href="index.html#services" class="shortcut-card">
+            <span>الخدمات الـ 10</span>
+            <span>←</span>
+          </a>
+          <a href="index.html#ecosystem" class="shortcut-card">
+            <span>الترابط الرقمي BMS</span>
+            <span>←</span>
+          </a>
+          <a href="index.html#sectors" class="shortcut-card">
+            <span>القطاعات والمشاريع</span>
+            <span>←</span>
+          </a>
+          <a href="index.html#about" class="shortcut-card">
+            <span>من نحن والاعتمادات</span>
+            <span>←</span>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="brand-footer">
+    <div>© 2026 شركة أساسات المشاعر المحدودة — جميع الحقوق محفوظة | سجل تجاري: 4031245678</div>
+  </footer>
 </body>
 </html>
