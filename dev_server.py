@@ -55,26 +55,42 @@ class RobustProxyHandler(http.server.SimpleHTTPRequestHandler):
             err_json = f'{{"success": false, "message": "Backend server connection error: {str(e)}"}}'
             self.wfile.write(err_json.encode('utf-8'))
 
+    def should_proxy(self):
+        return (
+            self.path.startswith('/api/') or
+            self.path.startswith('/media/') or
+            self.path.startswith('/django-admin/') or
+            self.path.startswith('/static/admin/') or
+            self.path.startswith('/swagger/') or
+            self.path.startswith('/redoc/')
+        )
+
     def do_GET(self):
-        if self.path.startswith('/api/') or self.path.startswith('/media/'):
+        if self.should_proxy():
             self.do_proxy()
         else:
             super().do_GET()
 
     def do_POST(self):
-        if self.path.startswith('/api/') or self.path.startswith('/media/'):
+        if self.should_proxy():
             self.do_proxy()
         else:
             self.send_error(405)
 
     def do_PUT(self):
-        if self.path.startswith('/api/') or self.path.startswith('/media/'):
+        if self.should_proxy():
             self.do_proxy()
         else:
             self.send_error(405)
 
     def do_PATCH(self):
-        if self.path.startswith('/api/') or self.path.startswith('/media/'):
+        if self.should_proxy():
+            self.do_proxy()
+        else:
+            self.send_error(405)
+
+    def do_DELETE(self):
+        if self.should_proxy():
             self.do_proxy()
         else:
             self.send_error(405)
